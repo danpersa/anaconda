@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard
 import org.springframework.context.annotation.Bean
 import org.springframework.http.client.HttpComponentsAsyncClientHttpRequestFactory
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
@@ -13,6 +14,7 @@ import org.zalando.riptide.OriginalStackTracePlugin
 import org.zalando.riptide.Rest
 
 
+@EnableHystrixDashboard
 @EnableCircuitBreaker
 @SpringBootApplication
 open class Application {
