@@ -1,9 +1,6 @@
 package com.danix.anaconda
 
-import com.github.tomakehurst.wiremock.client.WireMock.aResponse
-import com.github.tomakehurst.wiremock.client.WireMock.get
-import com.github.tomakehurst.wiremock.client.WireMock.stubFor
-import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration
 import com.github.tomakehurst.wiremock.junit.WireMockRule
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
@@ -25,18 +22,14 @@ internal class QuoteControllerAcceptanceTest {
 
     @Rule
     @JvmField
-    val wireMockRule = WireMockRule(8089)
+    val wireMockRule = WireMockRule(WireMockConfiguration.options().port(8089))
 
     @Autowired
     lateinit var restTemplate: TestRestTemplate
 
     @Before
     fun init() {
-        stubFor(get(urlEqualTo("/api/random"))
-                .willReturn(aResponse()
-                        .withStatus(200)
-                        .withHeader("Content-Type", "application/json")
-                        .withBody("{\"type\":\"success\",\"value\":{\"id\":5,\"quote\":\"Spring Boot solves this problem.\"}}")));
+        MockedServices.start()
     }
 
 

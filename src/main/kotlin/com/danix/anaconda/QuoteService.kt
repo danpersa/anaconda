@@ -40,7 +40,6 @@ open class QuoteService @Autowired constructor(private val restTemplate: RestTem
             rest.get(config.quoters)
                     .dispatch(Navigators.series(),
                             Bindings.on(SUCCESSFUL).call(Quote::class.java) { quote ->
-                                println("Quote $quote")
                                 result.complete(quote)
                             },
                             Bindings.anySeries().call { _, _ ->
