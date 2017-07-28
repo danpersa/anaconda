@@ -8,12 +8,12 @@ import org.springframework.core.env.AbstractEnvironment
 import org.springframework.test.context.ActiveProfiles
 
 @ActiveProfiles("dev")
-open class ApplicationDev {
+class ApplicationDev {
 
     @Configuration
     @ComponentScan("com.danix.anaconda.mock")
     @Import(MyConfig::class)
-    open class DevConfig
+    class DevConfig
 
     companion object {
 

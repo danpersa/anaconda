@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 
 @Component
 @Profile("dev", "acceptance-tests")
-open class MockedServices {
+class MockedServices {
 
     init {
         val wireMockServer = WireMockServer(8089)

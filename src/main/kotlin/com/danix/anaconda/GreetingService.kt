@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service
 import java.util.concurrent.atomic.AtomicLong
 
 @Service
-open class GreetingService {
+class GreetingService {
 
     private val counter = AtomicLong()
 
     @HystrixCommand
-    open fun sayHello(name: String): Greeting {
+    fun sayHello(name: String): Greeting {
         return Greeting(counter.incrementAndGet(), "Hello, $name")
     }
 }

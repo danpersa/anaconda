@@ -15,10 +15,10 @@ import org.zalando.riptide.Rest
 @EnableHystrixDashboard
 @EnableCircuitBreaker
 @SpringBootApplication
-open class MyConfig {
+class MyConfig {
 
     @Bean
-    open fun restTemplate(builder: RestTemplateBuilder): RestTemplate {
+    fun restTemplate(builder: RestTemplateBuilder): RestTemplate {
         return builder
                 .setConnectTimeout(2000)
                 .setReadTimeout(2000)
@@ -26,7 +26,7 @@ open class MyConfig {
     }
 
     @Bean
-    open fun rest(): Rest {
+    fun rest(): Rest {
         return Rest.builder()
                 .requestFactory(HttpComponentsAsyncClientHttpRequestFactory())
                 .converter(MappingJackson2HttpMessageConverter())

@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture
 import javax.ws.rs.core.Response
 
 @Service
-open class QuoteService @Autowired constructor(private val restTemplate: RestTemplate,
+class QuoteService @Autowired constructor(private val restTemplate: RestTemplate,
                                                private val rest: Rest,
                                                private val config: MyConfigurationProperties) {
 
@@ -26,13 +26,13 @@ open class QuoteService @Autowired constructor(private val restTemplate: RestTem
                     )
             )
     )
-    open fun getQuote(): Quote {
+    fun getQuote(): Quote {
         val quote = restTemplate.getForObject(
                 config.quoters, Quote::class.java)
         return quote
     }
 
-    open fun getQuoteRiptide(): CompletableFuture<Quote> {
+    fun getQuoteRiptide(): CompletableFuture<Quote> {
 
         val result = CompletableFuture<Quote>()
 
