@@ -43,7 +43,7 @@ open class QuoteService @Autowired constructor(private val restTemplate: RestTem
                                 println("Quote $quote")
                                 result.complete(quote)
                             },
-                            Bindings.anySeries().call { response, reader ->
+                            Bindings.anySeries().call { _, _ ->
                                 result.completeExceptionally(Problem.valueOf(Response.Status.GONE, "Gone"))
                             })
 
