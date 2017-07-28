@@ -1,10 +1,7 @@
 package com.danix.anaconda
 
-import com.github.tomakehurst.wiremock.core.WireMockConfiguration
-import com.github.tomakehurst.wiremock.junit.WireMockRule
+import com.danix.anaconda.mock.MockedServices
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,22 +13,12 @@ import org.springframework.test.context.junit4.SpringRunner
 
 
 @RunWith(SpringRunner::class)
-@SpringBootTest(webEnvironment = RANDOM_PORT)
+@SpringBootTest(classes = arrayOf(MyConfig::class, MockedServices::class), webEnvironment = RANDOM_PORT)
 @ActiveProfiles("acceptance-tests")
 internal class QuoteControllerAcceptanceTest {
 
-    @Rule
-    @JvmField
-    val wireMockRule = WireMockRule(WireMockConfiguration.options().port(8089))
-
     @Autowired
     lateinit var restTemplate: TestRestTemplate
-
-    @Before
-    fun init() {
-        MockedServices.start()
-    }
-
 
     @Test
     fun `GET when given a call to quote then returns the right one`() {

@@ -1,23 +1,20 @@
-package com.danix.anaconda
+package com.danix.anaconda.mock
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock
-import com.github.tomakehurst.wiremock.client.WireMock.aResponse
-import com.github.tomakehurst.wiremock.client.WireMock.get
-import com.github.tomakehurst.wiremock.client.WireMock.stubFor
-import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
+import org.springframework.context.annotation.Profile
+import org.springframework.stereotype.Component
 
-object MockedServices {
+@Component
+@Profile("dev", "acceptance-tests")
+open class MockedServices {
 
-    fun init() {
+    init {
         val wireMockServer = WireMockServer(8089)
         wireMockServer.start()
-    }
-
-    fun start() {
         WireMock.configureFor(8089)
-        stubFor(get(urlEqualTo("/api/random"))
-                .willReturn(aResponse()
+        WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/api/random"))
+                .willReturn(WireMock.aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
                         .withBody("{\"type\":\"success\",\"value\":{\"id\":5,\"quote\":\"Spring Boot solves this problem.\"}}")))

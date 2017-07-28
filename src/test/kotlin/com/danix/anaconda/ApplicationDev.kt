@@ -1,17 +1,26 @@
 package com.danix.anaconda
 
 import org.springframework.boot.SpringApplication
+import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Import
 import org.springframework.core.env.AbstractEnvironment
 import org.springframework.test.context.ActiveProfiles
 
 @ActiveProfiles("dev")
 open class ApplicationDev {
+
+    @Configuration
+    @ComponentScan("com.danix.anaconda.mock")
+    @Import(MyConfig::class)
+    open class DevConfig
+
     companion object {
-        @JvmStatic fun main(args: Array<String>) {
-            MockedServices.init()
-            MockedServices.start()
+
+        @JvmStatic
+        fun main(args: Array<String>) {
             System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "dev")
-            SpringApplication.run(MyConfig::class.java, *args)
+            SpringApplication.run(DevConfig::class.java, *args)
         }
     }
 }
