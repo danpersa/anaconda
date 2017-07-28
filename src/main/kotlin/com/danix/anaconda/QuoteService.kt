@@ -3,6 +3,7 @@ package com.danix.anaconda
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.http.HttpStatus.Series.SUCCESSFUL
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
@@ -51,5 +52,12 @@ class QuoteService @Autowired constructor(private val restTemplate: RestTemplate
         }
 
         return result
+    }
+
+    @Cacheable("quote")
+    fun getCachedQuote(): Quote {
+        val quote = restTemplate.getForObject(
+                config.quoters, Quote::class.java)
+        return quote
     }
 }

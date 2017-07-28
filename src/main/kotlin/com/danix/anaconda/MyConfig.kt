@@ -2,6 +2,7 @@ package com.danix.anaconda
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.web.client.RestTemplateBuilder
+import org.springframework.cache.annotation.EnableCaching
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard
 import org.springframework.context.annotation.Bean
@@ -15,6 +16,7 @@ import org.zalando.riptide.Rest
 @EnableHystrixDashboard
 @EnableCircuitBreaker
 @SpringBootApplication
+@EnableCaching
 class MyConfig {
 
     @Bean

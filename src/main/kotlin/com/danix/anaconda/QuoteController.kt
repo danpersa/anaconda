@@ -21,6 +21,11 @@ class QuoteController @Autowired constructor(val quoteService: QuoteService) {
         return quoteService.getQuote()
     }
 
+    @RequestMapping("/quote-cache")
+    fun quoteCache(): Quote {
+        return quoteService.getCachedQuote()
+    }
+
     @RequestMapping("/quote1")
     fun quote1(): CompletableFuture<Quote> {
         return quoteService.getQuoteRiptide()

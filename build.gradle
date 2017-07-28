@@ -33,6 +33,7 @@ dependencies {
     compile "org.zalando:riptide-core:$riptide_version"
     compile "org.zalando:riptide-problem:$riptide_version"
     compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-undertow"
     compile "org.springframework.boot:spring-boot-starter-actuator"
     compile "org.springframework.cloud:spring-cloud-starter-hystrix:$spring_cloud_version"
     compile "org.springframework.cloud:spring-cloud-starter-hystrix-dashboard:$spring_cloud_version"
