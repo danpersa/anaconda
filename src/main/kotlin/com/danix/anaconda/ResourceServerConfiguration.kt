@@ -21,7 +21,7 @@ import org.zalando.stups.oauth2.spring.server.TokenInfoResourceServerTokenServic
 class ResourceServerConfiguration : ResourceServerConfigurerAdapter() {
 
     @Value("\${zalando.oauth2.resource.token-info-uri}")
-    private val tokenInfoUri: String? = null
+    private lateinit var tokenInfoUri: String
 
     @Throws(Exception::class)
     override fun configure(resources: ResourceServerSecurityConfigurer) {
