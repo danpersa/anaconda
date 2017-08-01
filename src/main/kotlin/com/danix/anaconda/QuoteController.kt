@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.ws.rs.core.Response.Status
 
 @RestController
+@RequestMapping("/api")
 class QuoteController @Autowired constructor(val quoteService: QuoteService) {
 
     @RequestMapping("/quote")

@@ -35,12 +35,17 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-undertow"
     compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.springframework.boot:spring-boot-starter-security"
+
+    compile "org.springframework.security.oauth:spring-security-oauth2"
+    compile "org.zalando.stups:stups-spring-oauth2-server:1.0.19"
+
     compile "org.springframework.cloud:spring-cloud-starter-hystrix:$spring_cloud_version"
     compile "org.springframework.cloud:spring-cloud-starter-hystrix-dashboard:$spring_cloud_version"
     compile 'org.apache.httpcomponents:httpasyncclient:4.1.3'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
-    testCompile('com.github.tomakehurst:wiremock:2.7.0')
+    testCompile 'com.github.tomakehurst:wiremock:2.7.0'
     testCompile 'junit:junit'
 }
 

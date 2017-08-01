@@ -17,6 +17,7 @@ gradle-app.setting
 ### Java template
 # Compiled class file
 *.class
+/out
 
 # Log file
 *.log
