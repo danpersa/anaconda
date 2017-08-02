@@ -45,11 +45,10 @@ class ResourceServerConfiguration : ResourceServerConfigurerAdapter() {
                 .antMatchers("/api/**").access("#oauth2.hasScope('uid') and #oauth2.hasUidScopeAndRealm('/employees')")
                 .anyRequest().anonymous()
                 //				.anyRequest().access("#oauth2.hasScope('uid')");
-        super.configure(http)
     }
 
     @Bean
     fun resourceTokenServices(): ResourceServerTokenServices {
-        return TokenInfoResourceServerTokenServices(tokenInfoUri!!)
+        return TokenInfoResourceServerTokenServices(tokenInfoUri)
     }
 }

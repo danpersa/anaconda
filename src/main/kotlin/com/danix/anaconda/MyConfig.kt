@@ -1,11 +1,14 @@
 package com.danix.anaconda
 
+import com.ryantenney.metrics.spring.config.annotation.EnableMetrics
+import org.springframework.boot.actuate.metrics.rich.InMemoryRichGaugeRepository
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.cache.annotation.EnableCaching
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Primary
 import org.springframework.http.client.HttpComponentsAsyncClientHttpRequestFactory
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter
@@ -17,6 +20,7 @@ import org.zalando.riptide.Rest
 @EnableCircuitBreaker
 @SpringBootApplication
 @EnableCaching
+@EnableMetrics(proxyTargetClass = true)
 class MyConfig {
 
     @Bean
@@ -36,4 +40,9 @@ class MyConfig {
                 .plugin(OriginalStackTracePlugin())
                 .build()
     }
+
+    @Bean
+    @Primary
+    // to be able to have metrics like averages
+    fun inMemoryRichGaugeRepository() = InMemoryRichGaugeRepository()
 }
