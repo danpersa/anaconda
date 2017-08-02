@@ -1,5 +1,6 @@
-package com.danix.anaconda
+package com.danix.anaconda.acceptance
 
+import com.danix.anaconda.Greeting
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith

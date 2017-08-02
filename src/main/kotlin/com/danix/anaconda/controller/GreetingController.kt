@@ -1,5 +1,7 @@
-package com.danix.anaconda
+package com.danix.anaconda.controller
 
+import com.danix.anaconda.Greeting
+import com.danix.anaconda.GreetingService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam

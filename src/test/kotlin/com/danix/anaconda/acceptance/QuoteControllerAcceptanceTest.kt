@@ -1,5 +1,8 @@
-package com.danix.anaconda
+package com.danix.anaconda.acceptance
 
+import com.danix.anaconda.MyConfig
+import com.danix.anaconda.Quote
+import com.danix.anaconda.Value
 import com.danix.anaconda.mock.MockedServices
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
