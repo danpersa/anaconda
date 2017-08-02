@@ -3,6 +3,7 @@ package com.danix.anaconda.controller
 import com.danix.anaconda.MyProblem
 import com.danix.anaconda.Quote
 import com.danix.anaconda.QuoteService
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -20,9 +21,16 @@ import javax.ws.rs.core.Response.Status
 @RequestMapping("/api")
 class QuoteController @Autowired constructor(val quoteService: QuoteService) {
 
+    private val logger = LoggerFactory.getLogger(QuoteController::class.java)
+
     @RequestMapping("/quote")
     fun quote(): Quote {
-        return quoteService.getQuote()
+
+        val quote = quoteService.getQuote()
+
+        logger.debug("Here is a quote {}", quote)
+
+        return quote
     }
 
     @RequestMapping("/quote-cache")
