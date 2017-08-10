@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.RestController
 class GreetingController @Autowired constructor(val greetingService: GreetingService,
                                                 val counterService: CounterService) {
 
-    private val logger = LoggerFactory.getLogger(GreetingController::class.java)
-    private val meterGreeting = "meter.greeting"
-
     @Timed(name = "timer.greeting", absolute = true)
     @RequestMapping("/greeting")
     fun greeting(@RequestParam(value = "name", defaultValue = "World") name: String): Greeting {
@@ -24,5 +21,10 @@ class GreetingController @Autowired constructor(val greetingService: GreetingSer
         logger.debug("Here is a greeting for {}", name)
         counterService.increment(meterGreeting)
         return greetingService.sayHello(name)
+    }
+
+    private companion object {
+        val logger = LoggerFactory.getLogger(GreetingController::class.java)!!
+        const val meterGreeting = "meter.greeting"
     }
 }

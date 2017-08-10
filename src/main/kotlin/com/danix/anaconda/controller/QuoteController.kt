@@ -2,7 +2,7 @@ package com.danix.anaconda.controller
 
 import com.danix.anaconda.MyProblem
 import com.danix.anaconda.Quote
-import com.danix.anaconda.QuoteService
+import com.danix.anaconda.service.QuoteService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -20,8 +20,6 @@ import javax.ws.rs.core.Response.Status
 @RestController
 @RequestMapping("/api")
 class QuoteController @Autowired constructor(val quoteService: QuoteService) {
-
-    private val logger = LoggerFactory.getLogger(QuoteController::class.java)
 
     @RequestMapping("/quote")
     fun quote(): Quote {
@@ -52,4 +50,8 @@ class QuoteController @Autowired constructor(val quoteService: QuoteService) {
     @ExceptionHandler(ThrowableProblem::class)
     @ResponseBody
     fun handleProblem(req: HttpServletRequest, problem: ThrowableProblem): MyProblem = MyProblem(problem.title, problem.status)
+
+    private companion object {
+        private val logger = LoggerFactory.getLogger(QuoteController::class.java)
+    }
 }

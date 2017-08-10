@@ -1,5 +1,7 @@
-package com.danix.anaconda
+package com.danix.anaconda.service
 
+import com.danix.anaconda.MyConfigurationProperties
+import com.danix.anaconda.Quote
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,8 +18,8 @@ import javax.ws.rs.core.Response
 
 @Service
 class QuoteService @Autowired constructor(private val restTemplate: RestTemplate,
-                                               private val rest: Rest,
-                                               private val config: MyConfigurationProperties) {
+                                          private val rest: Rest,
+                                          private val config: MyConfigurationProperties) {
 
     @HystrixCommand(
             commandProperties = arrayOf(
