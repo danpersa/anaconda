@@ -2,12 +2,14 @@ group 'com.danix'
 version '0.0.1-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.1.3-2'
-    ext.spring_boot_version = '1.5.3.RELEASE'
+    ext.kotlin_version = '1.1.4-eap-69'
+    ext.spring_boot_version = '2.0.0.M3'
 
     repositories {
         mavenCentral()
         jcenter()
+        maven { url "http://repo.spring.io/libs-milestone" }
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap-1.1" }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -25,22 +27,23 @@ apply plugin: 'org.springframework.boot'
 repositories {
     mavenCentral()
     jcenter()
+    maven { url 'https://repo.spring.io/libs-milestone' }
+    maven { url "https://dl.bintray.com/kotlin/kotlin-eap-1.1" }
 }
 
-def riptide_version = '2.4.0'
-def spring_cloud_version = '1.3.1.RELEASE'
+def spring_cloud_version = '2.0.0.M1'
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-    compile "org.zalando:riptide-core:$riptide_version"
-    compile "org.zalando:riptide-problem:$riptide_version"
-    compile "org.springframework.boot:spring-boot-starter-web"
-    compile "org.springframework.boot:spring-boot-starter-undertow"
-    compile "org.springframework.boot:spring-boot-starter-actuator"
-    compile "org.springframework.boot:spring-boot-starter-security"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    compile "org.springframework.boot:spring-boot-starter-web:$spring_boot_version"
+    compile "org.springframework.boot:spring-boot-starter-undertow:$spring_boot_version"
+    compile "org.springframework.boot:spring-boot-starter-actuator:$spring_boot_version"
+    compile "org.springframework.boot:spring-boot-starter-security:$spring_boot_version"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:$spring_boot_version"
+    compile "org.springframework.boot:spring-boot-starter-webflux:$spring_boot_version"
 
-    compile "org.springframework.security.oauth:spring-security-oauth2"
+    compile "org.springframework.security.oauth:spring-security-oauth2:2.2.0.RELEASE"
     compile "org.zalando.stups:stups-spring-oauth2-server:1.0.19"
 
     compile "org.springframework.cloud:spring-cloud-starter-hystrix:$spring_cloud_version"
@@ -57,14 +60,17 @@ dependencies {
     compile "com.h2database:h2:1.4.196"
     compile "org.flywaydb:flyway-core:4.2.0"
 
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    compile "org.zalando:problem:0.11.0"
+    compile "org.zalando:jackson-datatype-problem:0.11.0"
+
+    testCompile "org.springframework.boot:spring-boot-starter-test:$spring_boot_version"
     testCompile 'com.github.tomakehurst:wiremock:2.7.0'
     testCompile 'junit:junit'
 }
 
-springBoot {
-    mainClass = 'com.danix.anaconda.Application'
-}
+//springBoot {
+//    mainClass = 'com.danix.anaconda.Application'
+//}
 
 compileKotlin {
     sourceCompatibility = JavaVersion.VERSION_1_8

@@ -2,6 +2,7 @@ package com.danix.anaconda.model
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType.IDENTITY
 import javax.persistence.Id
 import javax.persistence.Table
 
@@ -10,7 +11,7 @@ import javax.persistence.Table
 data class ContentTypeFieldEntity(
 
         @Id
-        @GeneratedValue
+        @GeneratedValue(strategy = IDENTITY)
         val id: Long? = null,
 
         val identifier: String,

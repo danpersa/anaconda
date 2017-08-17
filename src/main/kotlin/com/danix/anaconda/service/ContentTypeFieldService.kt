@@ -23,7 +23,7 @@ constructor(private val contentFieldTypeFieldRepo: ContentTypeFieldRepo) {
                     HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500")),
             fallbackMethod = "getContentTypeFieldsFallback"
     )
-    fun getContentTypeFields(pageable: Pageable) =
+    fun getContentTypeFields(pageable: Pageable): Page<ContentTypeField> =
             contentFieldTypeFieldRepo.findAll(pageable).map {
                 ContentTypeField(
                         it.id,

@@ -10,7 +10,8 @@ import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.util.concurrent.CompletableFuture
+import reactor.core.publisher.Mono
+import reactor.core.publisher.toMono
 
 
 @RestController
@@ -29,12 +30,13 @@ constructor(private val contentTypeFieldService: ContentTypeFieldService) {
     @Timed(name = timerContentTypeFields, absolute = true)
     @RequestMapping("/content-type-fields/{identifier}")
     fun contentTypeFieldByIdentifier(@PathVariable(value = "identifier") identifier: String):
-            CompletableFuture<ContentTypeField> {
+            Mono<ContentTypeField> {
 
         logger.debug("All the content type fields")
         return contentTypeFieldService
                 .getContentTypeFiledByIdentifier(identifier)
                 .toFuture()
+                .toMono()
     }
 
     private companion object {

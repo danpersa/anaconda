@@ -6,4 +6,9 @@ import org.springframework.stereotype.Component
 
 @Component
 @ConfigurationProperties("service.url")
-class MyConfigurationProperties(var quoters: String = "")
+class MyConfigurationProperties {
+    var quoters: String = ""
+
+    constructor() {
+    }
+}
