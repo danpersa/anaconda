@@ -2,7 +2,7 @@ group 'com.danix'
 version '0.0.1-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.1.3-2'
+    ext.kotlin_version = '1.1.4-2'
     ext.spring_boot_version = '1.5.3.RELEASE'
 
     repositories {
@@ -27,13 +27,11 @@ repositories {
     jcenter()
 }
 
-def riptide_version = '2.4.0'
 def spring_cloud_version = '1.3.1.RELEASE'
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-    compile "org.zalando:riptide-core:$riptide_version"
-    compile "org.zalando:riptide-problem:$riptide_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-undertow"
     compile "org.springframework.boot:spring-boot-starter-actuator"
@@ -43,8 +41,8 @@ dependencies {
     compile "org.springframework.security.oauth:spring-security-oauth2"
     compile "org.zalando.stups:stups-spring-oauth2-server:1.0.19"
 
-    compile "org.springframework.cloud:spring-cloud-starter-hystrix:$spring_cloud_version"
     compile "org.springframework.cloud:spring-cloud-starter-hystrix-dashboard:$spring_cloud_version"
+    compile "org.springframework.cloud:spring-cloud-starter-hystrix:$spring_cloud_version"
     compile 'org.apache.httpcomponents:httpasyncclient:4.1.3'
 
     compile 'io.dropwizard.metrics:metrics-core:3.1.2'
@@ -56,6 +54,8 @@ dependencies {
 
     compile "com.h2database:h2:1.4.196"
     compile "org.flywaydb:flyway-core:4.2.0"
+    compile "org.zalando:problem:0.11.0"
+    compile "org.zalando:jackson-datatype-problem:0.11.0"
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'com.github.tomakehurst:wiremock:2.7.0'

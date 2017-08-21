@@ -26,9 +26,9 @@ internal class GreetingControllerAcceptanceTest {
         // When
         val body: Greeting = restTemplate.getForObject("/greeting/?name={name}", Greeting::class.java, name)
 
-        val expectedGreeting = Greeting(1, "Hello, $name")
+        val expectedContent = "Hello, $name"
 
         // Then
-        assertThat(body).isEqualTo(expectedGreeting)
+        assertThat(body.content).isEqualTo(expectedContent)
     }
 }

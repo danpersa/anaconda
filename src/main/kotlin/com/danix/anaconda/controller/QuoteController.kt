@@ -36,11 +36,6 @@ class QuoteController @Autowired constructor(val quoteService: QuoteService) {
         return quoteService.getCachedQuote()
     }
 
-    @RequestMapping("/quote1")
-    fun quote1(): CompletableFuture<Quote> {
-        return quoteService.getQuoteRiptide()
-    }
-
     @RequestMapping("/quote2")
     fun quote2(): CompletableFuture<Quote> {
         throw Problem.valueOf(Status.BAD_REQUEST, "Hello Problem")
